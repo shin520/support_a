@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .tool__bar {
+            padding: 0 32px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tool__bar .item {
+            padding: 5px 12px;
+            border: solid 1px grey;
+        }
+
+        .filter__tool {
+            display: flex;
+            grid-gap: 10px;
+        }
+
+        .filter__tool .item,
+        .sort__tool .item {
+            position: relative;
+        }
+
+        .sort__tool .list {
+            position: absolute;
+            background: white;
+            padding: 15px 20px;
+            right: 0;
+            top: calc(100% + 10px);
+            width: 150px;
+            border: solid 1px #eee;
+            max-height: 200px;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            grid-gap: 10px;
+        }
+
+        .filter__tool .list {
+            position: absolute;
+            background: white;
+            padding: 15px 20px;
+            left: 0;
+            top: calc(100% + 10px);
+            width: 272px;
+            border: solid 1px #eee;
+            max-height: 200px;
+            overflow: auto;
+        }
+
+        .filter__tool .list .item__group {
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            grid-gap: 10px;
+        }
+
+        .filter__tool .list.color__land .item__group {
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-gap: 10px;
+        }
+
+        .filter__tool .list .item__group input[type=checkbox] {
+            border: solid 1px red;
+            border-radius: 0px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .sweet__checkbox {
+            display: none !important;
+        }
+
+        .filter__tool .list.size__land {
+            display: flex;
+            flex-wrap: wrap;
+            grid-gap: 10px;
+            align-items: center;
+        }
+
+        .filter__tool .list.color__land {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+
+        .filter__tool .list.size__land label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: normal;
+            border: solid 1px grey;
+            width: 50px;
+        }
+
+        .filter__tool .list.color__land label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-direction: column;
+            font-weight: normal;
+        }
+
+        .filter__tool .list.color__land label span.color__set {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        label.title__checkbox {
+            padding-left: 0;
+            font-weight: bold;
+        }
+
+        .sweet__checkbox:checked+label span.color__set::before {
+            content: '\1F5F8';
+            color: white;
+        }
+
+        .sweet__checkbox:checked+label {
+            color: rgb(88, 209, 88);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .sweet__checkbox input[type="checkbox"]:disabled+label {
+            color: rgb(0, 0, 0);
+            background: rgb(195, 195, 195);
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="tool__bar">
+        <div class="filter__tool">
+            <div class="item">
+                <div class="title">Style <i class="fa-light fa-chevron-down"></i></div>
+                <div class="list">
+                    <div class="item__group">
+                        <input type="checkbox" id="a">
+                        <label for="a">Lows [29]</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" id="a1">
+                        <label for="a1">Lows [29]</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" id="a2">
+                        <label for="a2">Lows [29]</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" id="a3">
+                        <label for="a3">Lows [29]</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" id="a4">
+                        <label for="a4">Lows [29]</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" id="a5">
+                        <label for="a5">Lows [29]</label>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="title">Price <i class="fa-light fa-chevron-down"></i></div>
+                <div class="list">
+                    <div class="item__group">
+                        <input type="radio" name="price" id="b">
+                        <label for="b">$1 ~ $99</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="radio" name="price" id="b1">
+                        <label for="b1">$100 ~ $999</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="radio" name="price" id="b2">
+                        <label for="b2">$1000 ~</label>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="title">Size <i class="fa-light fa-chevron-down"></i></div>
+                <div class="list size__land">
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="c">
+                        <label for="c" class="title__checkbox">10</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="c1">
+                        <label for="c1" class="title__checkbox">20</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="c2">
+                        <label for="c2" class="title__checkbox">30</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="c3">
+                        <label for="c3" class="title__checkbox">40</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="c4">
+                        <label for="c4" class="title__checkbox">50</label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="c5">
+                        <label for="c5" class="title__checkbox">60</label>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="title">Color <i class="fa-light fa-chevron-down"></i></div>
+                <div class="list color__land">
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="d">
+                        <label for="d" class="title__checkbox">
+                            <span class="color__set" style="background: blue;"></span>
+                            <span class="color__name">Blue</span>
+                        </label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="d1">
+                        <label for="d1" class="title__checkbox">
+                            <span class="color__set" style="background: red;"></span>
+                            <span class="color__name">red</span>
+                        </label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="d2">
+                        <label for="d2" class="title__checkbox">
+                            <span class="color__set" style="background: green;"></span>
+                            <span class="color__name">green</span>
+                        </label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="d3">
+                        <label for="d3" class="title__checkbox">
+                            <span class="color__set" style="background: yellow;"></span>
+                            <span class="color__name">yellow</span>
+                        </label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="d4">
+                        <label for="d4" class="title__checkbox">
+                            <span class="color__set" style="background: orangered;"></span>
+                            <span class="color__name">orangered</span>
+                        </label>
+                    </div>
+                    <div class="item__group">
+                        <input type="checkbox" class="sweet__checkbox" id="d5">
+                        <label for="d5" class="title__checkbox">
+                            <span class="color__set" style="background: purple;"></span>
+                            <span class="color__name">purple</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="sort__tool">
+            <div class="item">
+                <div class="title">Sort<i class="fa-light fa-chevron-down"></i></div>
+                <div class="list">
+                    <a href="">A - Z</a>
+                    <a href="">Z - A</a>
+                    <a href="">Lowest Price</a>
+                    <a href="">Highest Price</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
