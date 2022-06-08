@@ -10,6 +10,13 @@
 
 <body>
     <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+        }
         .tool__bar {
             padding: 0 32px;
             margin-top: 20px;
@@ -45,6 +52,7 @@
             display: flex;
             flex-direction: column;
             grid-gap: 10px;
+            z-index: 9999;
         }
 
         .filter__tool .list {
@@ -57,6 +65,7 @@
             border: solid 1px #eee;
             max-height: 200px;
             overflow: auto;
+            z-index: 9999;
         }
 
         .filter__tool .list .item__group {
