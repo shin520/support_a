@@ -10,13 +10,16 @@
 
 <body>
     <style>
-        *{
+        * {
             box-sizing: border-box;
         }
-        body{
+
+        body {
             padding: 0;
             margin: 0;
+            background: #eee;
         }
+
         .tool__bar {
             padding: 0 32px;
             margin-top: 20px;
@@ -157,13 +160,94 @@
             background: rgb(195, 195, 195);
             cursor: pointer;
         }
+
+        .btn__open__tool__bar {
+            display: none;
+        }
+
+        .title__rp {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .btn__open__tool__bar {
+                width: 30px;
+                height: 30px;
+                background-color: rgb(73, 135, 168);
+                color: white;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                border-radius: 50px;
+                margin-left: 32px;
+            }
+
+            .tool__bar {
+                position: fixed;
+                width: 100%;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                transform: translateX(-120%);
+                transition: .5s;
+                background: white;
+                overflow: auto;
+            }
+
+            .open__tool__bar {
+                transform: translateX(0);
+            }
+
+            .tool__bar {
+                display: block;
+                margin: 0;
+                padding: 0;
+            }
+
+            .filter__tool{
+                display: block;
+                position: relative;
+            }
+            .tool__bar .item {
+                border: none;
+                padding: 0;
+                position: unset;
+            }
+            .tool__bar .item .title{
+                padding: 10px 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                border-bottom: solid 1px #eee;
+            }
+
+            .filter__tool .list {
+                position: static;
+                width: 100%;
+                height: 0;
+                max-height: unset;
+                background: rgb(246, 246, 246);
+                border: none;
+                transition: .5s;
+            }
+            .open__list{
+                height: 100%;
+            }
+
+            .title__rp {
+                display: block;
+                padding: 16px 16px 0;
+                font-weight: bold;
+                font-size: 20px ;
+                text-transform: uppercase;
+            }
+        }
     </style>
 
-    <div class="tool__bar">
+    <div class="tool__bar open__tool__bar">
+        <div class="title__rp">Bộ lọc</div>
         <div class="filter__tool">
             <div class="item">
                 <div class="title">Style <i class="fa-light fa-chevron-down"></i></div>
-                <div class="list">
+                <div class="list open__list">
                     <div class="item__group">
                         <input type="checkbox" id="a">
                         <label for="a">Lows [29]</label>
@@ -190,7 +274,7 @@
                     </div>
                 </div>
             </div>
-            <div class="item">
+            <!-- <div class="item">
                 <div class="title">Price <i class="fa-light fa-chevron-down"></i></div>
                 <div class="list">
                     <div class="item__group">
@@ -282,11 +366,10 @@
                         </label>
                     </div>
                 </div>
-            </div>
-
+            </div> -->
         </div>
         <div class="sort__tool">
-            <div class="item">
+            <!-- <div class="item">
                 <div class="title">Sort<i class="fa-light fa-chevron-down"></i></div>
                 <div class="list">
                     <a href="">A - Z</a>
@@ -294,10 +377,24 @@
                     <a href="">Lowest Price</a>
                     <a href="">Highest Price</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
+    <div class="btn__open__tool__bar">F</div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(".btn__open__tool__bar").click(function () {
+                $(".tool__bar").addClass("open__tool__bar");
+            });
+            $(".btn__close__tool__bar").click(function () {
+                $(".tool__bar").removeClass("open__tool__bar");
+            });
+
+        });
+    </script>
 </body>
 
 </html>
